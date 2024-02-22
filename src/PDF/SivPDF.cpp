@@ -3,6 +3,11 @@
 namespace s3dex
 {
 	PDF::PDF(const FilePath& path, const double xdpi, const double ydpi)
+		: m_pageCount(0)
+		, m_currentPageIndex(0)
+		, m_texts()
+		, m_renderedImages()
+		, m_textures()
 	{
 		load(path, xdpi, ydpi);
 	}

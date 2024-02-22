@@ -7,37 +7,51 @@ void Main()
 	Window::Resize(1920, 1009);
 	Font font(25);
 
-	const FilePath filename = U"test.pdf";
-
-	s3dex::PDF pdf(filename);
+	s3dex::PDF pdf;
+	bool isLoaded = false;
 
 	while (System::Update())
 	{
-		pdf.drawCurrentPage(50, 50);
-
-		for (size_t i = 0; i < pdf.getCurrentPageTexts().size(); ++i)
+		if (DragDrop::HasNewFilePaths())
 		{
-			font(pdf.getCurrentPageTexts()[i]).draw(750, 50 + 30 * i);
+			for (const auto& dropped : DragDrop::GetDroppedFilePaths())
+			{
+				if (dropped.path.includes(U".pdf"))
+				{
+					pdf = s3dex::PDF(dropped.path, 300, 300);
+					isLoaded = true;
+				}
+			}
 		}
 
-		if (SimpleGUI::Button(U"<<", Vec2(100, 950)))
+		if (isLoaded)
 		{
-			pdf.setCurrentPageIndex(0);
-		}
+			for (size_t i = 0; i < pdf.getCurrentPageTexts().size(); ++i)
+			{
+				font(pdf.getCurrentPageTexts()[i]).draw(750, 50 + 30 * i);
+			}
 
-		if (SimpleGUI::Button(U"<", Vec2(200, 950)))
-		{
-			pdf.turnOverPrevious();
-		}
+			pdf.drawCurrentPage(50, 50);
 
-		if (SimpleGUI::Button(U">", Vec2(450, 950)))
-		{
-			pdf.turnOverNext();
-		}
+			if (SimpleGUI::Button(U"<<", Vec2(100, 950)))
+			{
+				pdf.setCurrentPageIndex(0);
+			}
 
-		if (SimpleGUI::Button(U">>", Vec2(550, 950)))
-		{
-			pdf.setCurrentPageIndex(pdf.getPageCount() - 1);
+			if (SimpleGUI::Button(U"<", Vec2(200, 950)))
+			{
+				pdf.turnOverPrevious();
+			}
+
+			if (SimpleGUI::Button(U">", Vec2(450, 950)))
+			{
+				pdf.turnOverNext();
+			}
+
+			if (SimpleGUI::Button(U">>", Vec2(550, 950)))
+			{
+				pdf.setCurrentPageIndex(pdf.getPageCount() - 1);
+			}
 		}
 	}
 }
