@@ -1,5 +1,6 @@
 ﻿# pragma once
 # include <Siv3D.hpp>
+# include "Siv3DEx/Page.hpp"
 # include <poppler/poppler-document.h>
 # include <poppler/poppler-page.h>
 # include <poppler/poppler-page-renderer.h>
@@ -11,11 +12,15 @@ namespace s3dex
 	class PDF
 	{
 	public:
-
 		PDF() = default;
 
 		explicit PDF(const FilePath& path, const double xdpi = 300, const double ydpi = 300);
 
+		/// @brief PDF ドキュメントを読み込む
+		/// @param path 
+		/// @param xdpi 
+		/// @param ydpi 
+		/// @return 
 		bool load(const FilePath& path, const double xdpi, const double ydpi);
 
 		/// @brief ページ数を取得
@@ -26,7 +31,14 @@ namespace s3dex
 		/// @return 現在のページ番号
 		int getCurrentPageIndex() const;
 
+		/// @brief  
+		/// @return 
+		const Page& getCurrentPage() const;
+
+		const Array<Page>& getPages() const;
+
 		/// @brief 現在のページ番号を設定
+		/// @param index
 		void setCurrentPageIndex(int index);
 
 		/// @brief 前のページに移動
@@ -35,20 +47,11 @@ namespace s3dex
 		/// @brief 次のページに移動
 		void turnOverNext();
 
-		/// @brief 現在のページのテキストを取得
-		const Array<String>& getCurrentPageTexts() const;
-
-		/// @brief 現在のページの画像を描画
-		/// @param x 描画する位置の x 座標
-		/// @param y 描画する位置の y 座標
-		void drawCurrentPage(double x, double y) const;
-
 	private:
+		Page m_currentPage;
+		Array<Page> m_pages;
 		int m_pageCount;
 		int m_currentPageIndex;
-		Array<Array<String>> m_texts;
-		Array<Image> m_renderedImages;
-		Array<Texture> m_textures;
 		Array<String> extractTextsFromPage(poppler::document* doc, int pageIndex);
 		Image convertPopplerImageToSiv3DImage(poppler::image& popplerImage);
 	};

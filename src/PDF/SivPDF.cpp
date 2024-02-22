@@ -5,11 +5,9 @@ namespace s3dex
 	PDF::PDF(const FilePath& path, const double xdpi, const double ydpi)
 		: m_pageCount(0)
 		, m_currentPageIndex(0)
-		, m_texts()
-		, m_renderedImages()
-		, m_textures()
 	{
 		load(path, xdpi, ydpi);
+		m_currentPage = m_pages[0];
 	}
 
 	bool PDF::load(const FilePath& path, const double xdpi, const double ydpi)
@@ -34,9 +32,7 @@ namespace s3dex
 			poppler::image popplerImage = renderer.render_page(page.get(), xdpi, ydpi);
 			Image sivImage = convertPopplerImageToSiv3DImage(popplerImage);
 			sivImage.scale(0.25); // 画像を縮小
-			m_renderedImages.push_back(sivImage);
-			m_textures.push_back(Texture(sivImage));
-			m_texts.push_back(extractTextsFromPage(doc.get(), i));
+			m_pages.push_back(Page(extractTextsFromPage(doc.get(), i), sivImage));
 		}
 
 		return true;
@@ -52,9 +48,20 @@ namespace s3dex
 		return m_currentPageIndex;
 	}
 
+	const Page& PDF::getCurrentPage() const
+	{
+		return m_currentPage;
+	}
+
+	const Array<Page>& PDF::getPages() const
+	{
+		return m_pages;
+	}
+
 	void PDF::setCurrentPageIndex(int index)
 	{
 		m_currentPageIndex = index;
+		m_currentPage = m_pages[m_currentPageIndex];
 	}
 
 	void PDF::turnOverPrevious()
@@ -62,6 +69,7 @@ namespace s3dex
 		if (m_currentPageIndex > 0)
 		{
 			--m_currentPageIndex;
+			m_currentPage = m_pages[m_currentPageIndex];
 		}
 	}
 
@@ -70,17 +78,8 @@ namespace s3dex
 		if (m_currentPageIndex < m_pageCount - 1)
 		{
 			++m_currentPageIndex;
+			m_currentPage = m_pages[m_currentPageIndex];
 		}
-	}
-
-	const Array<String>& PDF::getCurrentPageTexts() const
-	{
-		return m_texts[m_currentPageIndex];
-	}
-
-	void PDF::drawCurrentPage(double x, double y) const
-	{
-		m_textures[m_currentPageIndex].draw(x, y);
 	}
 
 	Array<String> PDF::extractTextsFromPage(poppler::document* doc, int pageIndex)
