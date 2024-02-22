@@ -1,6 +1,7 @@
 # Poppler-Siv3D
 
-PDFドキュメントの閲覧ライブラリ [Poppler](https://poppler.freedesktop.org/) を[OpenSiv3D](https://github.com/Siv3D/OpenSiv3D)で使用する手順の説明とサンプルコードのためのリポジトリです。
+PDFドキュメントの閲覧ライブラリ [Poppler](https://poppler.freedesktop.org/) を[OpenSiv3D](https://github.com/Siv3D/OpenSiv3D)で使用する手順の説明とサンプルコードのためのリポジトリです。  
+[Wiki](https://github.com/eightgamedev/Poppler-Siv3D/wiki)に導入手順を載せています。
 
 # ライセンス
 このPoppler-Siv3DはGPLv2を使用しています。詳しくはLICENCEファイルをご確認ください。
