@@ -144,10 +144,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PDF\SivPDF.cpp">
+    <ClCompile Include="src\PDF\Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PDF\SivPage.cpp">
+    <ClCompile Include="src\PDF\PDF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
