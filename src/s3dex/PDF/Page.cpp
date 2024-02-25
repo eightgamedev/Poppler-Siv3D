@@ -1,4 +1,4 @@
-﻿# include "s3dex/Page.hpp"
+﻿# include "s3dex/PDF/Page.hpp"
 
 namespace s3dex
 {
