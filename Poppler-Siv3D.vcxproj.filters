@@ -144,10 +144,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PDF\Page.cpp">
+    <ClCompile Include="src\s3dex\PDF\Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PDF\PDF.cpp">
+    <ClCompile Include="src\s3dex\PDF\PDF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -815,10 +815,10 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Siv3DEx\PDF.hpp">
+    <ClInclude Include="include\s3dex\Page.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Siv3DEx\Page.hpp">
+    <ClInclude Include="include\s3dex\PDF.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

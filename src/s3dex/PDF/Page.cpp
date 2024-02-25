@@ -1,4 +1,4 @@
-﻿# include "Siv3Dex/Page.hpp"
+﻿# include "s3dex/Page.hpp"
 
 namespace s3dex
 {
