@@ -815,10 +815,10 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\s3dex\Page.hpp">
+    <ClInclude Include="include\s3dex\PDF\Page.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\s3dex\PDF.hpp">
+    <ClInclude Include="include\s3dex\PDF\PDF.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

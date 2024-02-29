@@ -1,14 +1,14 @@
 ﻿# include <Siv3D.hpp> // Siv3D v0.6.14
 
-# include "s3dex/PDF/PDF.hpp"
-# include "s3dex/PDF/Page.hpp"
+# include "s3dex/pdf/PDF.hpp"
+# include "s3dex/pdf/Page.hpp"
 
 void Main()
 {
 	Window::Resize(1920, 1009);
 	Font font(25);
 
-	s3dex::PDF pdf;
+	s3dex::pdf::PDF pdf;
 	bool isLoaded = false;
 
 	while (System::Update())
@@ -19,7 +19,7 @@ void Main()
 			{
 				if (dropped.path.includes(U".pdf") || dropped.path.includes(U".PDF"))
 				{
-					pdf = s3dex::PDF(dropped.path, 300, 300);
+					pdf = s3dex::pdf::PDF(dropped.path, 300, 300);
 					isLoaded = true;
 				}
 			}
@@ -27,7 +27,7 @@ void Main()
 
 		if (isLoaded)
 		{
-			const s3dex::Page& currentPage = pdf.getCurrentPage();
+			const s3dex::pdf::Page& currentPage = pdf.getCurrentPage();
 			const Array<String>& texts = currentPage.getText();
 			const Texture& texture = currentPage.getTexture();
 
