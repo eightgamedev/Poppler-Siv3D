@@ -1,6 +1,6 @@
 ﻿# pragma once
 # include <Siv3D.hpp>
-# include "s3dex/PDF/Page.hpp"
+# include "s3dex/pdf/Page.hpp"
 # include <poppler/poppler-document.h>
 # include <poppler/poppler-page.h>
 # include <poppler/poppler-page-renderer.h>
